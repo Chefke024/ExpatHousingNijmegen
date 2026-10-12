@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expat Housing Nijmegen — Redesign concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14181f; --ink-2:#3a414d; --muted:#6b7280;
+  --paper:#faf8f5; --card:#ffffff; --line:#e7e2da;
+  --brand:#e8622c; --brand-dark:#c94e1c; --brand-soft:#fdeee6;
+  --deep:#1d2a3a; --deep-2:#26374c;
+  --radius:16px; --shadow:0 10px 30px rgba(20,24,31,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{overflow-wrap:anywhere;font-family:Poppins,system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:15px;border:2px solid transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-primary{background:var(--brand);color:#fff}.btn-primary:hover{background:var(--brand-dark)}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{background:#000}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;background:rgba(250,248,245,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;line-height:1.05;font-size:15px}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:var(--brand);display:grid;place-items:center}
+.logo small{display:block;color:var(--muted);font-weight:500;font-size:12px}
+.menu{display:flex;gap:28px;font-size:15px;font-weight:500}
+.menu a{color:var(--ink-2)}.menu a:hover{color:var(--brand)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:13px;font-weight:600}
+.lang button{border:0;background:none;padding:7px 12px;cursor:pointer;font-family:inherit;color:var(--muted)}
+.lang button.on{background:var(--ink);color:#fff}
+.burger{display:none;background:none;border:0;cursor:pointer}
+@media(max-width:920px){.menu,.nav-right .btn{display:none}.burger{display:block}
+  .menu.open{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--paper);padding:20px 24px;border-bottom:1px solid var(--line)}}
+
+/* HERO */
+.hero{position:relative;color:#fff;background:
+  linear-gradient(100deg,rgba(15,20,30,.88) 0%,rgba(15,20,30,.55) 55%,rgba(15,20,30,.2) 100%),
+  radial-gradient(ellipse at 75% 60%,#e8622c 0%,#7a3a2a 30%,#1d2a3a 70%);
+  min-height:620px;display:flex;align-items:center;overflow:hidden}
+.hero .bridge{position:absolute;right:-60px;bottom:-10px;width:760px;opacity:.35}
+.hero-inner{position:relative;padding:90px 0}
+.hero h1{font-size:clamp(40px,6vw,72px);max-width:760px;margin:18px 0 20px}
+.hero p{font-size:19px;max-width:560px;opacity:.9}
+.hero .eyebrow{color:#ffb38f}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.hero-facts{display:flex;gap:36px;margin-top:56px;flex-wrap:wrap}
+.hero-facts div{font-size:14px;opacity:.85}.hero-facts strong{display:block;font-size:22px;font-family:Fraunces,serif;opacity:1}
+.ph{font-size:11px;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:middle}
+
+/* AUDIENCE SPLIT */
+section{padding:96px 0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:-150px;position:relative;z-index:2}
+.aud{background:var(--card);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;flex-direction:column}
+.aud.dark{background:var(--deep);color:#fff;border-color:var(--deep)}
+.aud h2{font-size:32px;margin:10px 0 14px}
+.aud p{color:var(--ink-2)}.aud.dark p{color:#c9d2de}
+.aud ul{list-style:none;margin:22px 0 30px;display:grid;gap:10px}
+.aud li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.aud li::before{content:"";flex:0 0 20px;height:20px;border-radius:50%;background:var(--brand-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.5l2.5 2.5L14 7.5' stroke='%23e8622c' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/20px;margin-top:3px}
+.aud .btn{margin-top:auto;align-self:flex-start}
+@media(max-width:820px){.split{grid-template-columns:1fr;margin-top:-90px}.aud{padding:28px}}
+
+/* LISTINGS */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.sec-head h2{font-size:clamp(32px,4vw,46px);margin-top:8px}
+.sec-head p{color:var(--muted);max-width:460px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.chip{border:1px solid var(--line);background:var(--card);padding:9px 16px;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;color:var(--ink-2)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+select.chip{appearance:none;padding-right:34px;background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2314181f' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center/11px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.prop{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:.25s;display:flex;flex-direction:column}
+.prop:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.prop-img{aspect-ratio:4/3;position:relative;display:grid;place-items:center;color:rgba(255,255,255,.75);font-size:13px}
+.prop-img .tag{position:absolute;top:14px;left:14px;background:#fff;color:var(--ink);font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px}
+.prop-img .label{position:absolute;top:14px;right:14px;background:var(--brand);color:#fff;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px}
+.prop-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.price{font-family:Fraunces,serif;font-size:26px;font-weight:600}.price span{font-family:Poppins;font-size:14px;color:var(--muted);font-weight:400}
+.addr{font-weight:600;margin:4px 0 2px}.area{color:var(--muted);font-size:14px}
+.specs{display:flex;gap:16px;margin:18px 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2);flex-wrap:wrap}
+.specs b{color:var(--ink)}
+.prop .btn{margin-top:auto;justify-content:center}
+.notify{background:var(--brand-soft);border:2px dashed #f3b99d;justify-content:center;padding:34px;text-align:center}
+.notify h3{font-size:24px;margin-bottom:10px}.notify p{color:var(--ink-2);font-size:15px;margin-bottom:22px}
+.empty{display:none;color:var(--muted);padding:20px 0}
+
+/* STEPS */
+.steps-sec{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tabs{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:40px}
+.tabs button{border:0;background:none;padding:10px 22px;border-radius:999px;font-weight:600;font-family:inherit;font-size:15px;cursor:pointer;color:var(--muted)}
+.tabs button.on{background:var(--ink);color:#fff}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.steps[hidden]{display:none}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.step{padding:26px;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line)}
+.step .n{font-family:Fraunces,serif;font-size:40px;color:var(--brand);line-height:1}
+.step h3{font-size:20px;margin:14px 0 8px}.step p{font-size:14.5px;color:var(--ink-2)}
+
+/* OWNERS */
+.owners{background:var(--deep);color:#fff}
+.owners-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+@media(max-width:900px){.owners-grid{grid-template-columns:1fr;gap:40px}}
+.owners h2{font-size:clamp(32px,4vw,46px);margin:10px 0 18px}
+.owners p{color:#c9d2de}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.svc{grid-template-columns:1fr}}
+.svc div{background:var(--deep-2);border-radius:14px;padding:22px;border:1px solid rgba(255,255,255,.08)}
+.svc h3{font-family:Poppins;font-size:16px;margin:12px 0 6px}.svc p{font-size:14px}
+.svc svg{width:28px;height:28px;stroke:#ffb38f}
+
+/* NIJMEGEN */
+.nijm{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:900px){.nijm{grid-template-columns:1fr}}
+.nijm-img{aspect-ratio:5/4;border-radius:var(--radius);background:linear-gradient(160deg,#9cc3a3,#4f7d62 50%,#25433a);position:relative;overflow:hidden}
+.nijm-img svg{position:absolute;bottom:0;width:100%}
+.nijm h2{font-size:clamp(32px,4vw,44px);margin:10px 0 18px}
+.facts{display:grid;gap:18px;margin-top:26px}
+.facts>div{display:flex;gap:16px}.facts b{display:block}
+.facts span{color:var(--ink-2);font-size:15px}
+.dot{flex:0 0 44px;height:44px;border-radius:12px;background:var(--brand-soft);display:grid;place-items:center;font-size:20px}
+
+/* CONTACT */
+.contact{background:var(--card);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:64px}
+@media(max-width:900px){.contact-grid{grid-template-columns:minmax(0,1fr);gap:36px}}
+.contact h2{font-size:clamp(32px,4vw,46px);margin:10px 0 18px}
+.contact-info{margin-top:30px;display:grid;gap:14px;font-size:15px}
+.contact-info div{display:flex;gap:12px;align-items:center}
+form{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:32px;display:grid;gap:16px}
+.role{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.role label{border:1.5px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;font-weight:500;font-size:15px;background:#fff;display:flex;gap:8px;align-items:center}
+.role input{accent-color:var(--brand)}
+.role label:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+.field{display:grid;gap:6px;font-size:14px;font-weight:500}
+.field input,.field textarea{font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--brand)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:560px){.two,.role{grid-template-columns:1fr}}
+.ok{display:none;background:#e7f5ec;color:#1d6b3c;padding:14px;border-radius:10px;font-size:14px}
+
+footer{background:var(--ink);color:#aab2bf;padding:56px 0 30px;font-size:14px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+@media(max-width:800px){.foot{grid-template-columns:1fr 1fr}}
+footer h4{color:#fff;font-size:14px;margin-bottom:12px}
+footer a{display:block;margin:6px 0}footer a:hover{color:#fff}
+.foot-bottom{border-top:1px solid #2b313b;margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.concept{position:fixed;bottom:16px;right:16px;z-index:60;background:var(--ink);color:#fff;font-size:12px;padding:8px 14px;border-radius:999px;opacity:.85}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span>
+      <span>Expat Housing<small>Nijmegen</small></span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#homes" data-i="nav_homes">Homes</a>
+      <a href="#expats" data-i="nav_expats">For expats</a>
+      <a href="#owners" data-i="nav_owners">For owners</a>
+      <a href="#nijmegen" data-i="nav_nijm">About Nijmegen</a>
+      <a href="#contact" data-i="nav_contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang"><button class="on" data-lang="en">EN</button><button data-lang="nl">NL</button></div>
+      <a href="#contact" class="btn btn-primary" data-i="nav_cta">Get in touch</a>
+      <button class="burger" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')"><svg width="26" height="26" viewBox="0 0 24 24" stroke="#14181f" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <svg class="bridge" viewBox="0 0 800 300" fill="none" stroke="#fff" stroke-width="3"><path d="M0 250 H800"/><path d="M120 250 Q400 -40 680 250"/><g stroke-width="1.5"><path d="M180 250 L240 120"/><path d="M260 250 L300 75"/><path d="M340 250 L360 50"/><path d="M400 250 L400 42"/><path d="M460 250 L440 50"/><path d="M540 250 L500 75"/><path d="M620 250 L560 120"/></g></svg>
+  <div class="wrap hero-inner">
+    <span class="eyebrow" data-i="hero_eyebrow">Rental specialists in Nijmegen &amp; Arnhem</span>
+    <h1 data-i="hero_title">Your home in Nijmegen, without the hassle.</h1>
+    <p data-i="hero_sub">Quality rental homes for international professionals — and full-service management for the owners who trust us with them.</p>
+    <div class="hero-ctas">
+      <a href="#homes" class="btn btn-primary" data-i="hero_cta1">View available homes →</a>
+      <a href="#owners" class="btn btn-ghost" data-i="hero_cta2">I own a property</a>
+    </div>
+    <div class="hero-facts">
+      <div><strong>98%</strong><span data-i="fact1">satisfied owners &amp; tenants</span></div>
+      <div><strong data-i="fact2a">English</strong><span data-i="fact2">speaking support</span></div>
+      <div><strong data-i="fact3a">Short &amp; long</strong><span data-i="fact3">stay contracts</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCES -->
+<div class="wrap">
+  <div class="split">
+    <div class="aud" id="expats">
+      <span class="eyebrow" data-i="aud1_eye">For expats</span>
+      <h2 data-i="aud1_title">Find your home away from home</h2>
+      <p data-i="aud1_text">Moving to the Netherlands is a lot. We handle the contract, the paperwork and the Dutch rules — so you can focus on settling in.</p>
+      <ul>
+        <li data-i="aud1_l1">Furnished &amp; unfurnished homes</li>
+        <li data-i="aud1_l2">Short stay and long-term options</li>
+        <li data-i="aud1_l3">Clear terms, no hidden fees</li>
+        <li data-i="aud1_l4">Fast, English-speaking support</li>
+      </ul>
+      <a href="#homes" class="btn btn-dark" data-i="aud1_cta">Browse homes</a>
+    </div>
+    <div class="aud dark">
+      <span class="eyebrow" data-i="aud2_eye">For property owners</span>
+      <h2 data-i="aud2_title">Worry-free returns on your property</h2>
+      <p data-i="aud2_text">From finding reliable international tenants to rent collection and maintenance — we manage it all, so you don't have to.</p>
+      <ul>
+        <li data-i="aud2_l1">Marketing &amp; tenant screening</li>
+        <li data-i="aud2_l2">Legal contracts &amp; rent collection</li>
+        <li data-i="aud2_l3">Technical &amp; financial management</li>
+        <li data-i="aud2_l4">Advice on rent rules &amp; the point system</li>
+      </ul>
+      <a href="#owners" class="btn btn-primary" data-i="aud2_cta">How we work for owners</a>
+    </div>
+  </div>
+</div>
+
+<!-- LISTINGS -->
+<section id="homes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow" data-i="homes_eye">Available now</span><h2 data-i="homes_title">Homes for rent</h2></div>
+      <p data-i="homes_sub">A curated selection of quality homes in and around Nijmegen. Can't find the right one? Join our list and we'll contact you first.</p>
+    </div>
+    <div class="filters">
+      <button class="chip on" data-f="all" data-i="f_all">All homes</button>
+      <button class="chip" data-f="1" data-i="f_1">1 bedroom</button>
+      <button class="chip" data-f="2" data-i="f_2">2+ bedrooms</button>
+      <select class="chip" id="maxprice">
+        <option value="99999" data-i="f_price">Any price</option>
+        <option value="2500">≤ €2.500</option>
+        <option value="3000">≤ €3.000</option>
+      </select>
+    </div>
+    <div class="grid" id="list">
+      <article class="prop" data-beds="1" data-price="2450">
+        <div class="prop-img" style="background:linear-gradient(135deg,#c9b8a3,#8e7a64)"><span class="tag" data-i="permanent">Permanent</span><span class="label">Label A</span><span data-i="photo">photo</span></div>
+        <div class="prop-body">
+          <div class="price">€2.450 <span data-i="pm">/ month</span></div>
+          <div class="addr">Irene Vorrinkstraat 371</div><div class="area">6535 NA Nijmegen</div>
+          <div class="specs"><span><b>98</b> m²</span><span><b>1</b> <span data-i="bed">bedroom</span></span><span><b>2</b> <span data-i="rooms">rooms</span></span><span data-i="built11">Built 2011</span></div>
+          <a href="#contact" class="btn btn-primary" data-i="react">Request a viewing</a>
+        </div>
+      </article>
+      <article class="prop" data-beds="2" data-price="2650">
+        <div class="prop-img" style="background:linear-gradient(135deg,#a7b6c4,#55697e)"><span class="tag" data-i="permanent">Permanent</span><span class="label" data-i="newbuild">New build</span><span data-i="photo">photo</span></div>
+        <div class="prop-body">
+          <div class="price">€2.650 <span data-i="pm">/ month</span></div>
+          <div class="addr">Waalbandijk 491</div><div class="area">6541 AA Nijmegen</div>
+          <div class="specs"><span><b>91</b> m²</span><span><b>2</b> <span data-i="beds">bedrooms</span></span><span><b>3</b> <span data-i="rooms">rooms</span></span><span data-i="built23">Built 2023</span></div>
+          <a href="#contact" class="btn btn-primary" data-i="react">Request a viewing</a>
+        </div>
+      </article>
+      <article class="prop notify" data-beds="any" data-price="0">
+        <h3 data-i="notify_t">Not found your home yet?</h3>
+        <p data-i="notify_p">New homes are often rented before they're online. Join our list and hear about them first.</p>
+        <a href="#contact" class="btn btn-dark" style="align-self:center" data-i="notify_cta">Join the list</a>
+      </article>
+    </div>
+    <p class="empty" id="empty" data-i="empty">No homes match these filters right now — join our list and we'll let you know.</p>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-sec">
+  <div class="wrap">
+    <span class="eyebrow" data-i="how_eye">How it works</span>
+    <h2 style="font-size:clamp(32px,4vw,46px);margin:8px 0 28px" data-i="how_title">Simple, transparent, personal</h2>
+    <div class="tabs"><button class="on" data-tab="t-exp" data-i="tab_exp">For expats</button><button data-tab="t-own" data-i="tab_own">For owners</button></div>
+    <div class="steps" id="t-exp">
+      <div class="step"><div class="n">01</div><h3 data-i="e1">Tell us what you need</h3><p data-i="e1p">Budget, move-in date, furnished or not. We'll match you with suitable homes.</p></div>
+      <div class="step"><div class="n">02</div><h3 data-i="e2">View your new home</h3><p data-i="e2p">In person or by video call — handy if you're still abroad.</p></div>
+      <div class="step"><div class="n">03</div><h3 data-i="e3">Sign digitally</h3><p data-i="e3p">A clear, legal contract in English, signed online. No hidden fees.</p></div>
+      <div class="step"><div class="n">04</div><h3 data-i="e4">Move in &amp; settle</h3><p data-i="e4p">A personal check-in and help with registration, utilities and more.</p></div>
+    </div>
+    <div class="steps" id="t-own" hidden>
+      <div class="step"><div class="n">01</div><h3 data-i="o1">Free consultation</h3><p data-i="o1p">We assess your property, the rental value and the rules that apply.</p></div>
+      <div class="step"><div class="n">02</div><h3 data-i="o2">Marketing &amp; screening</h3><p data-i="o2p">Professional photos, listings and careful screening of every tenant.</p></div>
+      <div class="step"><div class="n">03</div><h3 data-i="o3">Contract &amp; check-in</h3><p data-i="o3p">We draw up the lease and handle the inspection and key handover.</p></div>
+      <div class="step"><div class="n">04</div><h3 data-i="o4">Ongoing management</h3><p data-i="o4p">Rent collection, maintenance and tenant contact — all taken care of.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OWNERS -->
+<section class="owners" id="owners">
+  <div class="wrap owners-grid">
+    <div>
+      <span class="eyebrow" data-i="own_eye">For property owners</span>
+      <h2 data-i="own_title">Rent out your property to reliable international tenants</h2>
+      <p data-i="own_p1">Expat Housing Nijmegen works with international professionals, companies and expat families looking for well-maintained homes. You get dependable tenants and one point of contact for everything.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">
+        <a href="#contact" class="btn btn-primary" data-i="own_cta">Request a free consultation</a>
+      </div>
+    </div>
+    <div class="svc">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><h3 data-i="s1">Tenant search</h3><p data-i="s1p">Marketing, viewings and thorough screening.</p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></svg><h3 data-i="s2">Contracts</h3><p data-i="s2p">Short and long stay, legally sound.</p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg><h3 data-i="s3">Financial management</h3><p data-i="s3p">Rent collection and clear reporting.</p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 6l4 4-9 9H5v-4z"/></svg><h3 data-i="s4">Technical management</h3><p data-i="s4p">Maintenance and repairs handled quickly.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NIJMEGEN -->
+<section id="nijmegen">
+  <div class="wrap nijm">
+    <div class="nijm-img">
+      <svg viewBox="0 0 500 200" preserveAspectRatio="none"><path d="M0 120 Q120 90 250 115 T500 105 V200 H0Z" fill="#cfe3e6" opacity=".55"/><path d="M0 150 Q150 130 300 150 T500 140 V200 H0Z" fill="#ffffff" opacity=".35"/></svg>
+    </div>
+    <div>
+      <span class="eyebrow" data-i="n_eye">About Nijmegen</span>
+      <h2 data-i="n_title">A historic city with a modern spirit</h2>
+      <p style="color:var(--ink-2)" data-i="n_p">One of the oldest cities in the Netherlands — green, compact and well connected. An ideal base for expats.</p>
+      <div class="facts">
+        <div><span class="dot">🌳</span><div><b data-i="n1">Close to nature</b><span data-i="n1p">Forests, hills and the river Waal just outside the door.</span></div></div>
+        <div><span class="dot">🚲</span><div><b data-i="n2">Compact &amp; connected</b><span data-i="n2p">Easy to get around, with great train links to the rest of NL and Germany.</span></div></div>
+        <div><span class="dot">🤝</span><div><b data-i="n3">International community</b><span data-i="n3p">Expat networks, international schools and a lively culture scene.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow" data-i="c_eye">Contact</span>
+      <h2 data-i="c_title">Let's talk</h2>
+      <p style="color:var(--ink-2)" data-i="c_p">Looking for a home, or a trusted partner to manage your property? Leave your details and we'll get back to you within one working day.</p>
+      <div class="contact-info">
+        <div>✉️ <a href="mailto:info@expathousingnijmegen.nl">info@expathousingnijmegen.nl</a></div>
+        <div>📞 <span>+31 (0)24 … <span class="ph" style="background:var(--brand-soft);color:var(--brand-dark)" data-i="todo">to add</span></span></div>
+        <div>🕘 <span data-i="hours">Mon – Fri, 09:00 – 17:30</span></div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault();document.getElementById('ok').style.display='block';this.reset()">
+      <div class="role">
+        <label><input type="radio" name="r" checked> <span data-i="r1">I'm looking for a home</span></label>
+        <label><input type="radio" name="r"> <span data-i="r2">I own a property</span></label>
+      </div>
+      <div class="two">
+        <div class="field"><span data-i="l_name">Name</span><input required></div>
+        <div class="field"><span data-i="l_phone">Phone</span><input type="tel"></div>
+      </div>
+      <div class="field"><span data-i="l_mail">Email</span><input type="email" required></div>
+      <div class="field"><span data-i="l_msg">Message</span><textarea rows="4"></textarea></div>
+      <button class="btn btn-primary" style="justify-content:center" data-i="send">Send message</button>
+      <div class="ok" id="ok" data-i="sent">Thanks! We'll be in touch soon. (Demo — nothing was sent.)</div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><h4>Expat Housing Nijmegen</h4><p data-i="f_tag">Hassle-free rentals, comfortable living in Nijmegen.</p></div>
+      <div><h4 data-i="nav_expats">For expats</h4><a href="#homes" data-i="nav_homes">Homes</a><a href="#expats" data-i="f_settle">Settling in</a><a href="#nijmegen" data-i="nav_nijm">About Nijmegen</a></div>
+      <div><h4 data-i="nav_owners">For owners</h4><a href="#owners" data-i="f_services">Services</a><a href="#owners" data-i="f_why">Why rent via us</a></div>
+      <div><h4 data-i="nav_contact">Contact</h4><a href="mailto:info@expathousingnijmegen.nl">info@expathousingnijmegen.nl</a><span data-i="hours">Mon – Fri, 09:00 – 17:30</span></div>
+    </div>
+    <div class="foot-bottom"><span>© Expat Housing Nijmegen</span><a href="#" data-i="terms">Terms &amp; conditions</a></div>
+  </div>
+</footer>
+
+<div class="concept" data-i="concept">Redesign concept · draft</div>
+
+<script>
+const NL={
+nav_homes:"Woningen",nav_expats:"Voor expats",nav_owners:"Voor eigenaren",nav_nijm:"Over Nijmegen",nav_contact:"Contact",nav_cta:"Neem contact op",
+hero_eyebrow:"Verhuurspecialist in Nijmegen & Arnhem",hero_title:"Je thuis in Nijmegen, zonder gedoe.",
+hero_sub:"Kwalitatieve huurwoningen voor internationale professionals — en volledig beheer voor de eigenaren die ons hun woning toevertrouwen.",
+hero_cta1:"Bekijk beschikbare woningen →",hero_cta2:"Ik ben eigenaar",fact1:"tevreden eigenaren & huurders",fact2a:"Engelstalige",fact2:"ondersteuning",fact3a:"Kort & lang",fact3:"verblijf mogelijk",
+aud1_eye:"Voor expats",aud1_title:"Een thuis ver van huis",aud1_text:"Verhuizen naar Nederland is veel. Wij regelen het contract, de papieren en de Nederlandse regels — zodat jij je kunt richten op settelen.",
+aud1_l1:"Gemeubileerde & ongemeubileerde woningen",aud1_l2:"Short stay en lange termijn",aud1_l3:"Heldere voorwaarden, geen verborgen kosten",aud1_l4:"Snelle, Engelstalige service",aud1_cta:"Bekijk woningen",
+aud2_eye:"Voor vastgoedeigenaren",aud2_title:"Zorgeloos rendement op je woning",aud2_text:"Van betrouwbare internationale huurders vinden tot huurinning en onderhoud — wij regelen alles.",
+aud2_l1:"Marketing & huurdersscreening",aud2_l2:"Juridisch sterke contracten & huurinning",aud2_l3:"Technisch & financieel beheer",aud2_l4:"Advies over huurregels & puntenstelsel",aud2_cta:"Zo werken wij voor eigenaren",
+homes_eye:"Nu beschikbaar",homes_title:"Woningen te huur",homes_sub:"Een selectie kwalitatieve woningen in en rond Nijmegen. Niet de juiste gevonden? Schrijf je in en we nemen als eerste contact op.",
+f_all:"Alle woningen",f_1:"1 slaapkamer",f_2:"2+ slaapkamers",f_price:"Elke prijs",permanent:"Onbepaalde tijd",newbuild:"Nieuwbouw",photo:"foto",pm:"/ maand",
+bed:"slaapkamer",beds:"slaapkamers",rooms:"kamers",built11:"Bouwjaar 2011",built23:"Bouwjaar 2023",react:"Plan een bezichtiging",
+notify_t:"Nog niet gevonden?",notify_p:"Nieuwe woningen zijn vaak al verhuurd voordat ze online staan. Schrijf je in en hoor het als eerste.",notify_cta:"Schrijf je in",
+empty:"Geen woningen met deze filters — schrijf je in en we laten het je weten.",
+how_eye:"Zo werkt het",how_title:"Simpel, transparant, persoonlijk",tab_exp:"Voor expats",tab_own:"Voor eigenaren",
+e1:"Vertel wat je zoekt",e1p:"Budget, verhuisdatum, gemeubileerd of niet. Wij zoeken passende woningen.",e2:"Bezichtig je nieuwe huis",e2p:"Op locatie of via videocall — handig als je nog in het buitenland bent.",
+e3:"Digitaal tekenen",e3p:"Een helder, rechtsgeldig contract in het Engels, online getekend.",e4:"Verhuizen & settelen",e4p:"Persoonlijke check-in en hulp bij inschrijving, energie en meer.",
+o1:"Gratis kennismaking",o1p:"We beoordelen je woning, de huurwaarde en de regels die gelden.",o2:"Marketing & screening",o2p:"Professionele foto's, advertenties en zorgvuldige screening.",
+o3:"Contract & check-in",o3p:"Wij stellen het huurcontract op en verzorgen de inspectie en sleuteloverdracht.",o4:"Doorlopend beheer",o4p:"Huurinning, onderhoud en contact met huurders — volledig geregeld.",
+own_eye:"Voor vastgoedeigenaren",own_title:"Verhuur je woning aan betrouwbare internationale huurders",own_p1:"Expat Housing Nijmegen werkt met internationale professionals, bedrijven en expatgezinnen die op zoek zijn naar goed onderhouden woningen. Jij krijgt betrouwbare huurders en één aanspreekpunt voor alles.",
+own_cta:"Vraag een gratis kennismaking aan",s1:"Huurders zoeken",s1p:"Marketing, bezichtigingen en grondige screening.",s2:"Contracten",s2p:"Kort en lang verblijf, juridisch sterk.",s3:"Financieel beheer",s3p:"Huurinning en heldere rapportages.",s4:"Technisch beheer",s4p:"Onderhoud en reparaties snel geregeld.",
+n_eye:"Over Nijmegen",n_title:"Een historische stad met een moderne geest",n_p:"Een van de oudste steden van Nederland — groen, compact en goed bereikbaar. Een ideale uitvalsbasis voor expats.",
+n1:"Dicht bij de natuur",n1p:"Bossen, heuvels en de Waal om de hoek.",n2:"Compact & bereikbaar",n2p:"Alles dichtbij, met goede treinverbindingen naar de rest van NL en Duitsland.",n3:"Internationale gemeenschap",n3p:"Expatnetwerken, internationale scholen en een levendige cultuurscene.",
+c_eye:"Contact",c_title:"Laten we praten",c_p:"Op zoek naar een woning, of een betrouwbare partner voor het beheer van je vastgoed? Laat je gegevens achter en we reageren binnen één werkdag.",
+todo:"aanvullen",hours:"ma – vr, 09:00 – 17:30",r1:"Ik zoek een woning",r2:"Ik ben eigenaar",l_name:"Naam",l_phone:"Telefoon",l_mail:"E-mail",l_msg:"Bericht",send:"Verstuur bericht",
+sent:"Bedankt! We nemen snel contact op. (Demo — er is niets verstuurd.)",f_tag:"Zorgeloos huren, comfortabel wonen in Nijmegen.",f_settle:"Settelen",f_services:"Diensten",f_why:"Waarom via ons",terms:"Algemene voorwaarden",concept:"Redesign-concept · concept"
+};
+const EN={};document.querySelectorAll('[data-i]').forEach(e=>{if(!(e.dataset.i in EN))EN[e.dataset.i]=e.textContent});
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.lang button').forEach(x=>x.classList.toggle('on',x===b));
+  const d=b.dataset.lang==='nl'?NL:EN;document.documentElement.lang=b.dataset.lang;
+  document.querySelectorAll('[data-i]').forEach(e=>{const v=d[e.dataset.i];if(v)e.textContent=v});
+});
+// filters
+let beds='all';
+function apply(){const max=+document.getElementById('maxprice').value;let n=0;
+  document.querySelectorAll('#list .prop').forEach(p=>{if(p.dataset.beds==='any')return;
+    const b=+p.dataset.beds,pr=+p.dataset.price;
+    const ok=(beds==='all'||(beds==='1'&&b===1)||(beds==='2'&&b>=2))&&pr<=max;p.style.display=ok?'':'none';if(ok)n++});
+  document.getElementById('empty').style.display=n?'none':'block';}
+document.querySelectorAll('.chip[data-f]').forEach(c=>c.onclick=()=>{document.querySelectorAll('.chip[data-f]').forEach(x=>x.classList.toggle('on',x===c));beds=c.dataset.f;apply()});
+document.getElementById('maxprice').onchange=apply;
+// tabs
+document.querySelectorAll('.tabs button').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.steps').forEach(s=>s.hidden=s.id!==t.dataset.tab)});
+document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('open'));
+</script>
+</body>
+</html>
